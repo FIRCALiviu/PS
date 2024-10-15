@@ -47,3 +47,14 @@ for i in range(4):
     axis[i].plot(domeniu,freq_new[i])
 axis[4].plot(domeniu,sin1)
 plt.show()
+
+# acuma ascultam semnalele
+
+sem2a = np.sin(400*np.arange(0,1,1/1600))
+sem2b = np.sin(800*np.arange(0,3,1/10000))
+sem2c = np.arange(0,2,0.0001)%1/240
+sem2d = np.sign(np.arange(0,2,0.0001)%1/300-1/600)
+
+import sounddevice
+
+sounddevice.play(sem2a,44100)
