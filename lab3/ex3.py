@@ -21,5 +21,5 @@ repr = np.array(range(n))
 
 plt.stem(repr,data)
 plt.xlim(right=80,left  =0) # frecventele sunt intre 7 si 75
-plt.savefig()
+plt.savefig("plot")
 plt.show()
