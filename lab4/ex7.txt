@@ -1,0 +1,5 @@
+snr = 10^(snrdb/10)
+
+=> snr = 10^8
+=> p_zgomot = p_semnal/10^8 = 9/10^7
+
