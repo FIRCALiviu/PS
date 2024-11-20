@@ -1,0 +1,4 @@
+Presupun ca "optim" inseamna ca toate frecventele masurate sunt prezente, 
+stim ca f_a(m) = m*f_s/N , valoarea maxima lui m este N-1, deci frecventa maxima este aproximativ fs (pentru ca N este mare), deci 1/3600.
+
+

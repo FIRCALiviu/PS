@@ -1,0 +1,1 @@
+Acest semnal are componenta continua, pentru ca fft ia mari valori langa 0. Pentru al elimina, trebuie sa facem -= medie

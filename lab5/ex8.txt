@@ -1,0 +1,4 @@
+Am putea sa facem o convolutie intre acea zii care nu ii se stie data, si semnalul care il avem. Data este unde e valoarea maxima.
+Ca aceasta solutie sa mearga, data trebuie sa fie prezenta in domenuiul timp studiat, pentru ca daca nu, nu ne putem da seama de asta, chiar daca sunt evident nepotrivite.
+
+    
