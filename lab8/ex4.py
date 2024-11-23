@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-X = np.linspace(0,10,5000)
+X = np.linspace(0,1000,5000)
 trend = X*X+X-5
 
 sezon = np.sin(2*np.pi*2*X)+np.sin(2*np.pi*40*X)
@@ -32,7 +32,7 @@ def get_params(serie,p,m):
 
 
 
-for m in range(2,150):
+for m in range(2,1000):
     t = float('inf')
     p_min = -1
     for p in range(2,13):
@@ -45,7 +45,7 @@ for m in range(2,150):
             t = val
 
     print('for m = {}, p optim = {}'.format(m,p_min))
+    print(t)
 
-
-# se intampla un lucru surprinzator : cu atat m creste , cu atat p optim e mai 
-# mic, dupa ce atince un prag m, atunci p optim mereu 12 !
+# mi se pare aleatoriu dupa ce am facut domeniul mult mai mare, pentru ca este foarte precisa tehnica, orice p
+# mai mare ca 3 e ok
