@@ -1,8 +1,8 @@
 import numpy as np
-size = 20
+size = 2
 
-p1 = np.random.random(size)
-p2 = np.random.random(size)
+p1 = np.array([1,1])
+p2 = np.array([1,1])
 
 coeficienti = [0]*(2*size-1)
 

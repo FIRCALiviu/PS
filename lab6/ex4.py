@@ -20,8 +20,97 @@ plt.show()
 
 """
 O sa luam frecventele sub 50% din ele. In ultimul laborator am luat 25%, si pierderea de date era deja vizibila.
-Nyquist frequency = 1/2*fs => ar avea 1/7200 HZ, si normalizat ar fi 1.
+Nyquist frequency = 1/2*fs => ar avea 1/7200 HZ, si frecventa normalizata ar fi 0.5.
 
 """
 
+order = 5
+wn = 0.5 # 100% din nyquist frequency
+rp = 5
 
+from scipy.signal import butter, cheby1, sosfilt
+
+filtru1 = butter(order,wn,output='sos')
+
+filtru2 = cheby1(order,rp,wn,output='sos')
+
+filtered1 = sosfilt(filtru1,data)
+filtered2 = sosfilt(filtru2,data)
+
+fig,axes = plt.subplots(3)
+
+axes[0].plot(data)
+axes[0].set_title("Date nefiltrate")
+
+axes[1].plot(filtered1)
+axes[1].set_title("Filtrate cu butter")
+
+axes[2].plot(filtered2)
+axes[2].set_title("Filtrate cu cheby1")
+
+fig.suptitle("scara timp: 1 = 1 ora")
+plt.savefig("butter si cheby.png")
+plt.show()
+# mie imi place mai mult cea filtrata cu butter, pentru ca altitudinea peakurilor este mai fidela la datele originale
+
+
+# reproiectam filtrele cu ordini diferiti:
+
+order = 2
+wn = 0.5 # 100% din nyquist frequency
+rp = 5
+
+from scipy.signal import butter, cheby1, sosfilt
+
+filtru1 = butter(order,wn,output='sos')
+
+filtru2 = cheby1(order,rp,wn,output='sos')
+
+filtered1 = sosfilt(filtru1,data)
+filtered2 = sosfilt(filtru2,data)
+
+fig,axes = plt.subplots(3)
+
+axes[0].plot(data)
+axes[0].set_title("Date nefiltrate")
+
+axes[1].plot(filtered1)
+axes[1].set_title("Filtrate cu butter")
+
+axes[2].plot(filtered2)
+axes[2].set_title("Filtrate cu cheby1")
+
+fig.suptitle("scara timp: 1 = 1 ora")
+plt.savefig("butter si cheby cu ordin =2.png")
+plt.show()
+
+order = 10
+wn = 0.5 # 100% din nyquist frequency
+rp = 5
+
+from scipy.signal import butter, cheby1, sosfilt
+
+filtru1 = butter(order,wn,output='sos')
+
+filtru2 = cheby1(order,rp,wn,output='sos')
+
+filtered1 = sosfilt(filtru1,data)
+filtered2 = sosfilt(filtru2,data)
+
+fig,axes = plt.subplots(3)
+
+axes[0].plot(data)
+axes[0].set_title("Date nefiltrate")
+
+axes[1].plot(filtered1)
+axes[1].set_title("Filtrate cu butter")
+
+axes[2].plot(filtered2)
+axes[2].set_title("Filtrate cu cheby1")
+
+fig.suptitle("scara timp: 1 = 1 ora")
+plt.savefig("butter si cheby cu ordin = 10.png")
+plt.show()
+
+# mie mi-a placut cel mai mult cheby cu ordin mic, pentru ca pozitia peakurilor este conservata cat mai bine, 
+# dar frecventele mari sunt inca atenuate
