@@ -17,3 +17,9 @@ plt.plot(domeniu,np.sin(domeniu),label = 'sin')
 plt.legend()
 plt.yscale('log')
 plt.show()
+
+diff = np.log(np.abs( pade(domeniu) - np.sin(domeniu))+10**-10)
+
+plt.plot(domeniu,diff,label= '|pade-sin| Diferenta maxima = 10 ^ -5')
+plt.legend()
+plt.show()

@@ -4,7 +4,7 @@ from scipy.io.wavfile import read
 import numpy as np
 
 def spectru(v):
-    return np.log10(np.abs(np.fft.fft(v))+1)
+    return np.log10(np.abs(np.fft.fft(v)[:len(v)//2])+1)
 
 f, data = read("aeiou.wav")
 l = len(data)

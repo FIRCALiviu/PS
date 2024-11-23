@@ -41,3 +41,5 @@ for i,line in enumerate(M):
     axis[i].plot(range(8),np.imag(line),label='imag')
     axis[i].legend()
 plt.show()
+
+print(np.allclose())
