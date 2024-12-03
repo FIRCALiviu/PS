@@ -10,7 +10,7 @@ rezidual = np.random.randn(100)
 
 serie = trend+sezon+rezidual
 
-serie = np.array([1,2,3,4,5])
+
 
 def s(a,vec):
     rez = [vec[0]]
@@ -40,5 +40,6 @@ print(index_optim)
 plt.plot(serie[1:],label = 'seria timp')
 plt.plot(s(index_optim,serie[:-1]),label='preds')
 plt.legend()
+plt.savefig('ex2.png')
 plt.show()
 
