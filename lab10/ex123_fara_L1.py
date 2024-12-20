@@ -27,15 +27,14 @@ def gen_serie_ar(y_serie,p):
     pred = Y@(param.T)
     return pred
 
-def gen_serie_ar_params_mascati(y_serie,*params): # params  = singurii care sunt folositi
-    p= len(params)
+def gen_serie_ar_params_mascati(y_serie,params,p): # params  = 0 daca e mascat j si 1 daca nu
     Y = np.zeros((len(y_serie)-p,p))
 
     for i in range(len(y_serie)-p):
-        for j in params:
-            Y[i][j] = y_serie[i+j]
+        for j in range(p):
+            Y[i][j] = y_serie[i+j]*params[j]
 
-    param = np.linalg.inv(Y.T@Y)@Y.T@y_serie[p:]
+    param = np.linalg.lstsq(Y,y_serie[p:])[0]
 
 
 
@@ -49,17 +48,28 @@ plt.show()
 p=50 # acum o sa fie parametrii redundanti
 
 
-params_wanted = 9 # cat timp ruleaza greedy
+
 
 list_params = []
 
-def get_new_param(data,p, *params): # params: solutia greedy pana acuma, nr natural returneaza parametrul in plus
-    params_remaining = set(*(i for i in range(p))) - set(params)
+def get_new_param(data,p, params): # params: solutia greedy pana acuma, nr natural returneaza parametrul in plus
+    params_remaining = set((i for i in range(p))) - set(params)
     min_loss = float('inf')
     index_min = -1
     for i in params_remaining:
-        
-        loss = gen_serie_ar(data,tuple(*params,i))
+        params_ar = [0 ]*p
+        params_ar[i] = 1
+        for k in params:
+            params_ar[k] = 1
+        loss = ((gen_serie_ar_params_mascati(data,params_ar,p) - data[p:])**2).sum()
+        print(loss)
         if loss < min_loss:
             min_loss = loss
             index_min = i
+    return index_min
+
+params_wanted = 9 # cat timp ruleaza greedy
+params = []
+for i in range(params_wanted):
+    params.append(get_new_param(serie,p,params))
+print(params) # rezultat : [45, 40, 35, 0, 10, 30, 15, 25, 47] in 30secunde
